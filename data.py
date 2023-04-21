@@ -12,12 +12,14 @@ def get_user_data():
     Generating fake data using Faker library
     """
     return {
+        "user_id": faker.unique.random_int(min=11, max=9999999),
         "name": faker.name(),
         "address": faker.address(),
         "created_at": faker.year(),
         "phone" : faker.phone_number(),
-        "items":','.join([str(elem) for elem in faker.words(3, True, items_list)]),
-        "total_cost": faker.random_int(10, 100)
+        "items":','.join([str(elem) for elem in set(faker.words(3, True, items_list))]),
+        "total_cost": faker.random_int(10, 100),
+        "order_id": faker.uuid4()
     }
 
 
